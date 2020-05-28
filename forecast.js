@@ -13,7 +13,7 @@ const getCity = async (city) => {
 
 // get information for 5 days
 const getWeather = async (id) => {
-  const base = "http://dataservice.accuweather.com/forecasts/v1/daily/5day/";
+  const base = "https://dataservice.accuweather.com/forecasts/v1/daily/5day/";
   const query = `${id}?apikey=${key}`;
 
   const response = await fetch(base + query);
