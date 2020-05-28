@@ -1,51 +1,62 @@
 const cityForm = document.querySelector("form");
-const card = document.querySelector(".card");
+const weather = document.querySelector(".weather");
 const details = document.querySelector(".details");
 const time = document.querySelector("img.time");
 const icon = document.querySelector(".icon img");
 
 const updateUI = (data) => {
-  //   const cityDets = data.cityDets;
-  //   const weather = data.weather;
+  const { cityDets, DailyForecasts } = data;
 
-  const { cityDets, weather } = data;
+  DailyForecasts.forEach((DailyForecast) => {
+    let day = new Date(DailyForecast.Date);
+    day = day.toString().slice(0, 15);
 
-  //update details template
-  details.innerHTML = `
-        <h5 class="my-3">${cityDets.EnglishName}</h5>
-        <div class="my-3">${weather.WeatherText}</div>
-        <div class="display-4 my-4">
-           <span>${weather.Temperature.Metric.Value}</span>
-           <span>&deg;C</span>
+    const html = `
+
+      <div class="weather-card">
+        <p class="weather-card-time text">${day}</p>
+        <div class="weather-card-img-container">
+          <img
+            class="weather-card-img"
+            src="img/day.svg"
+            alt="image"
+          />
         </div>
-    `;
+        <div class="text">
+        <h3 class="weather-card-location">${cityDets.EnglishName}</h3>
+        <p class="weather-card-weather">${DailyForecast.Day.IconPhrase}</p>
+        <div class="weather-card-temperature">
+            <span>${DailyForecast.Temperature.Maximum.Value}</span>
+            <span>&deg;F</span>
+        </div>
+        </div>
+        `;
+
+    weather.innerHTML += html;
+  });
 
   //update the night and day, and icon images
-  const iconSrc = `img/icons/${weather.WeatherIcon}.svg`;
-  icon.setAttribute("src", iconSrc);
+  //   const iconSrc = `img/icons/${weather.WeatherIcon}.svg`;
+  //   icon.setAttribute("src", iconSrc);
 
-  let timeSrc = weather.IsDayTime ? "img/day.svg" : "img/night.svg";
+  //   let timeSrc = weather.IsDayTime ? "img/day.svg" : "img/night.svg";
 
-  //   if (weather.IsDayTime) {
-  //     timeSrc = "img/day.svg";
-  //   } else {
-  //     timeSrc = "img/night.svg";
-  //   }
-  time.setAttribute("src", timeSrc);
+  //   time.setAttribute("src", timeSrc);
 
   //remove the d-none class if present
-  if (card.classList.contains("d-none")) {
-    card.classList.remove("d-none");
+  if (weather.classList.contains("d-none")) {
+    weather.classList.remove("d-none");
   }
 };
 
-const updateCity = async (city) => {
+const updateCity = async (city, data) => {
   const cityDets = await getCity(city);
-  const weather = await getWeather(cityDets.Key);
+  const DailyForecasts = await getWeather(cityDets.Key);
 
+  console.log(DailyForecasts);
   return {
     cityDets,
-    weather,
+    DailyForecasts,
   };
 };
 
@@ -59,3 +70,4 @@ cityForm.addEventListener("submit", (e) => {
     .then((data) => updateUI(data))
     .catch((err) => console.log(err));
 });
+
