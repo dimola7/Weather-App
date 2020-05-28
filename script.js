@@ -31,7 +31,6 @@ const updateUI = (data) => {
         </div>
         </div>
         `;
-
     weather.innerHTML += html;
   });
 
@@ -68,6 +67,6 @@ cityForm.addEventListener("submit", (e) => {
 
   updateCity(city)
     .then((data) => updateUI(data))
+    .then((weather.innerHTML = ""))
     .catch((err) => console.log(err));
 });
-
