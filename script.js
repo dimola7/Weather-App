@@ -10,9 +10,10 @@ const updateUI = (data) => {
   DailyForecasts.forEach((DailyForecast) => {
     let day = new Date(DailyForecast.Date);
     day = day.toString().slice(0, 15);
+    let toCelsius = ((DailyForecast.Temperature.Maximum.Value - 32) * 5) / 9;
+    toCelsius = Math.round(toCelsius);
 
     const html = `
-
       <div class="weather-card">
         <p class="weather-card-time text">${day}</p>
         <div class="weather-card-img-container">
@@ -26,8 +27,8 @@ const updateUI = (data) => {
         <h3 class="weather-card-location">${cityDets.EnglishName}</h3>
         <p class="weather-card-weather">${DailyForecast.Day.IconPhrase}</p>
         <div class="weather-card-temperature">
-            <span>${DailyForecast.Temperature.Maximum.Value}</span>
-            <span>&deg;F</span>
+            <span>${toCelsius}</span>
+            <span>&deg;C</span>
         </div>
         </div>
         `;
