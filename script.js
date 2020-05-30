@@ -3,10 +3,14 @@ const weather = document.querySelector(".weather");
 const details = document.querySelector(".details");
 const time = document.querySelector("img.time");
 const icon = document.querySelector(".icon img");
+// const loader = document.querySelector(".loader");
 
 const updateUI = (data) => {
   const { cityDets, DailyForecasts } = data;
 
+  //   let loader = `<div class="loader"></div>`;
+  //   loader.innerHTML = loader;
+  //   loader.removeAttribute("hidden");
   DailyForecasts.forEach((DailyForecast) => {
     let day = new Date(DailyForecast.Date);
     day = day.toString().slice(0, 15);
@@ -47,7 +51,14 @@ const updateUI = (data) => {
   if (weather.classList.contains("d-none")) {
     weather.classList.remove("d-none");
   }
+  //   if (loader.classList.contains("d-none")) {
+  //     loader.classList.remove("d-none");
+  //   }
 };
+
+// const loading = () => {
+//     loader.removeAttribute("hidden");
+// }
 
 const updateCity = async (city, data) => {
   const cityDets = await getCity(city);
@@ -67,6 +78,7 @@ cityForm.addEventListener("submit", (e) => {
   cityForm.reset();
 
   updateCity(city)
+    // .then(loader.setAttribute("hidden", ""))
     .then((data) => updateUI(data))
     .then((weather.innerHTML = ""))
     .catch((err) => console.log(err));
