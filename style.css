@@ -128,7 +128,7 @@ body {
   width: 80px;
   height: 80px;
   border: 2px solid #f3f3f3;
-  border-top: 3px solid #f25a41;
+  border-top: 3px solid #3498db;
   border-radius: 100%;
   will-change: transform;
   animation: spin 1s infinite linear;

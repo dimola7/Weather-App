@@ -82,4 +82,13 @@ cityForm.addEventListener("submit", (e) => {
     .then((data) => updateUI(data))
     .then((weather.innerHTML = ""))
     .catch((err) => console.log(err));
-});
+
+  // set localStorage
+  localStorage.setItem("city", city);
+}); 
+
+if (localStorage.getItem("city")) {
+  updateCity(localStorage.getItem("city"))
+    .then((data) => updateUI(data))
+    .catch((err) => console.log(err));
+}
