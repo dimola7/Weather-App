@@ -8,13 +8,24 @@ body {
 }
 .input-box {
   max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2.5rem;
+  margin-bottom: 3rem;
 }
+
+.header-text {
+  color: #636e72;
+}
+
 .icon {
   position: relative;
-  top: -50px;
+  margin: auto;
+  top: -40px;
   border-radius: 50%;
-  width: 100px;
+  width: 70px;
   margin-bottom: -50px;
+  background: #dfe6e9;
 }
 
 .text {
@@ -38,7 +49,7 @@ body {
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  width: 200px;
+  width: 220px;
   background: #fff;
 }
 
@@ -78,6 +89,10 @@ body {
   font-size: 28px;
   text-align: center;
   padding: 14px 0;
+}
+
+.missing {
+  display: none;
 }
 
 /* .loader {
@@ -149,13 +164,11 @@ body {
     grid-template-columns: 1fr;
     gap: 16px;
     justify-content: center;
+    padding-left: 50%;
+    padding-right: 50%;
   }
   .input-box {
     max-width: 80%;
-  }
-  .weather-grid {
-    padding-left: 50%;
-    padding-right: 50%;
   }
   .loader {
     left: 58%;

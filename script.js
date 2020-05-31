@@ -16,6 +16,8 @@ const updateUI = (data) => {
     day = day.toString().slice(0, 15);
     let toCelsius = ((DailyForecast.Temperature.Maximum.Value - 32) * 5) / 9;
     toCelsius = Math.round(toCelsius);
+    // let iconSrc = `img/icons/${DailyForecast.Day.Icon}.svg`;
+    // icon.setAttribute("src", iconSrc);
 
     const html = `
       <div class="weather-card">
@@ -27,6 +29,9 @@ const updateUI = (data) => {
             alt="image"
           />
         </div>
+        <div class="icon">
+            <img src="img/icons/1.svg" alt="">
+          </div>
         <div class="text">
         <h3 class="weather-card-location">${cityDets.EnglishName}</h3>
         <p class="weather-card-weather">${DailyForecast.Day.IconPhrase}</p>
@@ -40,19 +45,17 @@ const updateUI = (data) => {
   });
 
   //update the night and day, and icon images
-  //   const iconSrc = `img/icons/${weather.WeatherIcon}.svg`;
-  //   icon.setAttribute("src", iconSrc);
 
   //   let timeSrc = weather.IsDayTime ? "img/day.svg" : "img/night.svg";
 
   //   time.setAttribute("src", timeSrc);
 
-  //remove the d-none class if present
-  if (weather.classList.contains("d-none")) {
-    weather.classList.remove("d-none");
+  //remove the missing class if present
+  if (weather.classList.contains("missing")) {
+    weather.classList.remove("missing");
   }
-  //   if (loader.classList.contains("d-none")) {
-  //     loader.classList.remove("d-none");
+  //   if (loader.classList.contains("missing")) {
+  //     loader.classList.remove("missing");
   //   }
 };
 
@@ -85,7 +88,7 @@ cityForm.addEventListener("submit", (e) => {
 
   // set localStorage
   localStorage.setItem("city", city);
-}); 
+});
 
 if (localStorage.getItem("city")) {
   updateCity(localStorage.getItem("city"))

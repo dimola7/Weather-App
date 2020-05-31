@@ -13,17 +13,17 @@
     <title>Weather App</title>
   </head>
   <body>
-    <div class="input-box my-5 mx-auto">
-      <h1 class="text-muted text-center my-4">Global Weather</h1>
-      <form class="change-location my-4 text-center text-muted">
+    <div class="input-box">
+      <h1 class="text-center my-4 header-text">Global Weather</h1>
+      <form class="change-location my-4 text-center header-text">
         <label for="city">Enter a city name for weather information</label>
         <input type="text" name="city" class="form-control p-4" />
       </form>
     </div>
 
-    <div hidden class="loader d-none"></div>
+    <div hidden class="loader"></div>
 
-    <div class="weather d-none weather-grid">
+    <div class="weather missing weather-grid">
       <!-- api data occupies here -->
     </div>
     <script src="forecast.js"></script>
